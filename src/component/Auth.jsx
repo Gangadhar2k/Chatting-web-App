@@ -4,13 +4,13 @@ import { signInWithPopup } from "firebase/auth";
 
 import Cookie from "universal-cookie";
 
-const Auth = () => {
+const Auth = ({ setIsAuth }) => {
   var cookie = new Cookie();
   const handelSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       cookie.set("auth-Token", result.user.refreshToken);
-      console.log(result);
+      setIsAuth(cookie.get("auth-Token"));
     } catch (err) {
       console.log(err);
     }
