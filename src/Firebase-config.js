@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  //  YOUR api Here
+  // your api
 };
 
 const app = initializeApp(firebaseConfig);

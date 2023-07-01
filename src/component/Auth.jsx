@@ -1,7 +1,5 @@
 import { auth, provider } from "../Firebase-config";
-
 import { signInWithPopup } from "firebase/auth";
-
 import Cookie from "universal-cookie";
 
 const Auth = ({ setIsAuth }) => {
@@ -17,9 +15,9 @@ const Auth = ({ setIsAuth }) => {
   };
 
   return (
-    <div>
-      Sign In With Google To Continue
-      <button onClick={handelSignIn}>Sign With Google</button>
+    <div className="signIn">
+      <h3>Sign In With Google To Continue</h3>
+      <button className="signIn-btn " onClick={handelSignIn}></button>
     </div>
   );
 };

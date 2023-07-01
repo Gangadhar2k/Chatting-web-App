@@ -5,6 +5,7 @@ import Chat from "./component/Chat";
 import Cookie from "universal-cookie";
 import { signOut } from "firebase/auth";
 import { auth } from "./Firebase-config";
+import "./index.css";
 function App() {
   var cookie = new Cookie();
 

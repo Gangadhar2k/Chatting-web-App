@@ -35,7 +35,6 @@ function Chat({ room }) {
 
     return () => unsubscribe();
   }, []);
-
   const handelSubmit = async (e) => {
     e.preventDefault();
     if (text !== "") {
@@ -51,22 +50,25 @@ function Chat({ room }) {
     } else return;
   };
   return (
-    <div>
+    <div className="chat-display">
+      <div className="chat-header">Welcome To {room}</div>
       <div>
         {message.map((message) => (
-          <div>
-            <span>{message.name}</span>
+          <div className="chat">
             <h3>{message.text}</h3>
           </div>
         ))}
       </div>
       <form onSubmit={handelSubmit}>
         <input
+          className="text-input"
           placeholder="Enter your message"
           onChange={handelText}
           value={text}
         />
-        <button type="Submit">Send</button>
+        <button className="send-btn" type="Submit">
+          Send
+        </button>
       </form>
     </div>
   );
