@@ -3,18 +3,21 @@ import "./App.css";
 import Auth from "./component/Auth";
 import Chat from "./component/Chat";
 import Cookie from "universal-cookie";
+import { signOut } from "firebase/auth";
+import { auth } from "./Firebase-config";
 function App() {
   var cookie = new Cookie();
 
   const [isAuth, setIsAuth] = useState(cookie.get("auth-Token"));
   const [room, setRoom] = useState(null);
   const roomInputRef = useRef(null);
-  console.log(roomInputRef);
 
-  // handeling room
-  // const handelRoom = (e) => {
-  //   setRoom(e.target.value);
-  // };
+  const handelSignOut = async () => {
+    await signOut(auth);
+    cookie.remove("auth-Token");
+    setRoom(null);
+    setIsAuth(false);
+  };
 
   if (!isAuth) {
     return (
@@ -24,7 +27,7 @@ function App() {
     );
   } else {
     return (
-      <div>
+      <>
         {room ? (
           <Chat room={room} />
         ) : (
@@ -36,7 +39,11 @@ function App() {
             </button>
           </div>
         )}
-      </div>
+
+        <div>
+          <button onClick={handelSignOut}>Sign Out</button>
+        </div>
+      </>
     );
   }
 }
