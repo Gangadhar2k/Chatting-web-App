@@ -51,6 +51,9 @@
     height: 30px;
     width: 80px;
     padding: 10px;
+     background-image: url(./component/pngwing.com.png);
+  background-repeat: no-repeat;
+  background-position: center;
   }
 }
 
@@ -63,6 +66,9 @@
     height: 25px;
     width: 60px;
     padding: 5px;
+     background-image: url(./component/pngwing.com.png);
+  background-repeat: no-repeat;
+  background-position: center;
   }
 }
 /* sign in component end */
@@ -156,7 +162,7 @@
 
   .chat-true p,
   .chat-false p {
-    font-size: 12px;
+    font-size: 17px;
   }
 }
 
