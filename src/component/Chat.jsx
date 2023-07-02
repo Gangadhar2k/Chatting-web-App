@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   addDoc,
   collection,
@@ -13,9 +13,11 @@ import { auth, db } from "../Firebase-config";
 function Chat({ room }) {
   const [text, setText] = useState("");
   const [message, setMessage] = useState([]);
+  const chatContainerRef = useRef(null);
+  const lastMessageRef = useRef(null);
 
   const messageRef = collection(db, "Messages");
-  const handelText = (e) => {
+  const handleText = (e) => {
     setText(e.target.value);
   };
 
@@ -30,12 +32,21 @@ function Chat({ room }) {
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
       });
+
+      const chatDisplay = document.getElementById("chat-display");
+      chatDisplay.scrollTop = chatDisplay.scrollHeight;
       setMessage(messages);
+      scrollToBottom(); // Scroll to the bottom after new messages are added
     });
 
     return () => unsubscribe();
-  }, []);
-  const handelSubmit = async (e) => {
+  }, [room]);
+
+  const scrollToBottom = () => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (text !== "") {
       await addDoc(messageRef, {
@@ -49,21 +60,30 @@ function Chat({ room }) {
       setText("");
     } else return;
   };
+
   return (
-    <div className="chat-display">
+    <div className="chat-display" id="chat-display" ref={chatContainerRef}>
       <div className="chat-header">Welcome To {room}</div>
       <div>
-        {message.map((message) => (
-          <div className="chat">
-            <h3>{message.text}</h3>
+        {message.map((message, index) => (
+          <div
+            className={`chat-${
+              auth.currentUser.displayName === message.name ? true : false
+            }`}
+            key={message.id}
+          >
+            <p ref={index === message.length - 1 ? lastMessageRef : null}>
+              {message.text}
+            </p>
           </div>
         ))}
+        <div ref={lastMessageRef} /> {/* Empty div as a target for scrolling */}
       </div>
-      <form onSubmit={handelSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           className="text-input"
           placeholder="Enter your message"
-          onChange={handelText}
+          onChange={handleText}
           value={text}
         />
         <button className="send-btn" type="Submit">

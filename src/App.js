@@ -41,9 +41,9 @@ function App() {
           </div>
         )}
 
-        <div>
+        {/* <div>
           <button onClick={handelSignOut}>Sign Out</button>
-        </div>
+        </div> */}
       </>
     );
   }

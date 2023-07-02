@@ -41,6 +41,30 @@
   outline: none;
 }
 
+/* Media Queries */
+@media (max-width: 768px) {
+  .signIn h3 {
+    font-size: 20px;
+  }
+
+  .signIn-btn {
+    height: 30px;
+    width: 80px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signIn h3 {
+    font-size: 18px;
+  }
+
+  .signIn-btn {
+    height: 25px;
+    width: 60px;
+    padding: 5px;
+  }
+}
 /* sign in component end */
 .chat-header {
   font-size: 25px;
@@ -51,3 +75,89 @@
 }
 
 /* chat component start */
+.text-input {
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  height: 35px;
+  outline: none;
+  font-size: 25px;
+  border-radius: 10px;
+}
+
+.send-btn {
+  position: fixed;
+  bottom: 0;
+  width: 10%;
+  height: 35px;
+  outline: none;
+  margin-left: 90%;
+  font-size: 25px;
+  border-radius: 10px;
+  line-height: 10px;
+}
+.chat-display {
+  background-color: rgb(146, 144, 141);
+  height: 93vh;
+  overflow-y: auto;
+}
+.chat-true {
+  text-align: right;
+}
+
+.chat-true p {
+  background-color: #7dda36; /* Light green */
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.chat-false p {
+  background-color: #4b4b96; /* Light gray */
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 14px;
+  display: inline-block;
+}
+.chat-false {
+  text-align: left;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .text-input {
+    width: 80%;
+  }
+
+  .send-btn {
+    width: 20%;
+    margin-left: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-input {
+    width: 80%;
+    font-size: 20px;
+  }
+
+  .send-btn {
+    width: 20%;
+    font-size: 20px;
+    margin-left: 80%;
+  }
+
+  .chat-true p,
+  .chat-false p {
+    font-size: 12px;
+  }
+}
+
+/* chat component ended */
