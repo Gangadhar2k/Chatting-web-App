@@ -1,36 +1,25 @@
-import { useState, useRef } from "react";
-import "./App.css";
+import { useRef, useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 import Auth from "./component/Auth";
 import Chat from "./component/Chat";
-import Cookie from "universal-cookie";
-import { signOut } from "firebase/auth";
-import { auth } from "./Firebase-config";
+import "./App.css";
 import "./index.css";
+
 function App() {
-  var cookie = new Cookie();
-
-  const [isAuth, setIsAuth] = useState(cookie.get("auth-Token"));
-  const [room, setRoom] = useState(null);
+  const { isAuth, room, setRoom } = useContext(AuthContext);
   const roomInputRef = useRef(null);
-
-  const handelSignOut = async () => {
-    await signOut(auth);
-    cookie.remove("auth-Token");
-    setRoom(null);
-    setIsAuth(false);
-  };
 
   if (!isAuth) {
     return (
       <div className="App">
-        <Auth setIsAuth={setIsAuth} />
+        <Auth />
       </div>
     );
   } else {
     return (
       <>
         {room ? (
-          <Chat room={room} />
+          <Chat />
         ) : (
           <div>
             <label>Enter A Room Number</label>
@@ -40,10 +29,6 @@ function App() {
             </button>
           </div>
         )}
-
-        {/* <div>
-          <button onClick={handelSignOut}>Sign Out</button>
-        </div> */}
       </>
     );
   }

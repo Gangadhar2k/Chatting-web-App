@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 import {
   addDoc,
   collection,
@@ -9,8 +11,10 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { auth, db } from "../Firebase-config";
+import SignOut from "./SignOut";
 
-function Chat({ room }) {
+function Chat() {
+  const { room } = useContext(AuthContext);
   const [text, setText] = useState("");
   const [message, setMessage] = useState([]);
   const chatContainerRef = useRef(null);
@@ -63,7 +67,9 @@ function Chat({ room }) {
 
   return (
     <div className="chat-display" id="chat-display" ref={chatContainerRef}>
-      <div className="chat-header">Welcome To {room}</div>
+      <div className="chat-header">
+        Welcome To {room} <SignOut />
+      </div>
       <div>
         {message.map((message, index) => (
           <div
