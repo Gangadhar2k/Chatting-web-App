@@ -1,13 +1,13 @@
-import { useRef, useContext } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Auth from "./component/Auth";
 import Chat from "./component/Chat";
+import Room from "./component/Room";
 import "./App.css";
 import "./index.css";
 
 function App() {
-  const { isAuth, room, setRoom } = useContext(AuthContext);
-  const roomInputRef = useRef(null);
+  const { isAuth, room } = useContext(AuthContext);
 
   if (!isAuth) {
     return (
@@ -22,11 +22,7 @@ function App() {
           <Chat />
         ) : (
           <div>
-            <label>Enter A Room Number</label>
-            <input ref={roomInputRef} />
-            <button onClick={() => setRoom(roomInputRef.current.value)}>
-              Enter
-            </button>
+            <Room />
           </div>
         )}
       </>

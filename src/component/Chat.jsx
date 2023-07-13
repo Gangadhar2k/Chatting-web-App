@@ -78,6 +78,7 @@ function Chat() {
             }`}
             key={message.id}
           >
+            <img className="userImg" src={message.Image} alt="user" srcset="" />
             <p ref={index === message.length - 1 ? lastMessageRef : null}>
               {message.text}
             </p>
@@ -85,7 +86,7 @@ function Chat() {
         ))}
         <div ref={lastMessageRef} /> {/* Empty div as a target for scrolling */}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           className="text-input"
           placeholder="Enter your message"
