@@ -8,11 +8,7 @@ const Room = () => {
   return (
     <room className="Room-body">
       <div className="room">
-        <input
-          ref={roomInputRef}
-          placeholder="ENTER A ROOM CODE"
-          maxlength="10"
-        />
+        <input ref={roomInputRef} placeholder="ENTER A CODE" maxlength="10" />
         <button onClick={() => setRoom(roomInputRef.current.value)}>
           Let's Talk
         </button>

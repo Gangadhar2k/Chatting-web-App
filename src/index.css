@@ -149,7 +149,7 @@
   align-items: center;
   /* border: 1px solid black; */
   border-radius: 5px;
-  width: 400px;
+  max-width: 400px;
   margin: 200px auto;
   padding: 20px 20px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -312,10 +312,12 @@
   }
 
   .room {
-    width: 300px;
+    max-width: 300px;
   }
 
   .room input {
+    width: 70%;
+    margin: 0px auto;
     font-size: 20px;
   }
 
